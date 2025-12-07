@@ -1,0 +1,20 @@
+workflows:
+  android-service-qc:
+    name: Android Service QC Workflow
+    max_build_duration: 30
+
+    environment:
+      android_signing:
+        - practice-example-keystore
+      flutter: 3.35.6  
+    cache:
+      cache_paths:
+        - ~/.gradle/caches
+        - ~/.pub-cache    
+    triggering:
+      events:
+        - pull_request
+            branch_patterns:
+        - pattern: "QC"
+          include: true
+          source: true
